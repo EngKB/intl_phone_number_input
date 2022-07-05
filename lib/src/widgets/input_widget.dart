@@ -320,7 +320,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
   String? validator(String? value) {
     bool isValid =
         this.isNotValid && (value!.isNotEmpty || widget.ignoreBlank == false);
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (isValid && widget.errorMessage != null) {
         setState(() {
           this.selectorButtonBottomPadding =
@@ -399,17 +399,24 @@ class _InputWidgetView
             Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                SelectorButton(
-                  country: state.country,
-                  countries: state.countries,
-                  onCountryChanged: state.onCountryChanged,
-                  selectorConfig: widget.selectorConfig,
-                  selectorTextStyle: widget.selectorTextStyle,
-                  searchBoxDecoration: widget.searchBoxDecoration,
-                  locale: state.locale,
-                  isEnabled: widget.isEnabled,
-                  autoFocusSearchField: widget.autoFocusSearch,
-                  isScrollControlled: widget.countrySelectorScrollControlled,
+                Container(
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: Color(0xffF3F3F7),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: SelectorButton(
+                    country: state.country,
+                    countries: state.countries,
+                    onCountryChanged: state.onCountryChanged,
+                    selectorConfig: widget.selectorConfig,
+                    selectorTextStyle: widget.selectorTextStyle,
+                    searchBoxDecoration: widget.searchBoxDecoration,
+                    locale: state.locale,
+                    isEnabled: widget.isEnabled,
+                    autoFocusSearchField: widget.autoFocusSearch,
+                    isScrollControlled: widget.countrySelectorScrollControlled,
+                  ),
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,
